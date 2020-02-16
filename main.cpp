@@ -4,7 +4,7 @@
 
 int main()
 {
-	Gl::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "tic-tac-toe");
+	Gl::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "ASLABLOVANIA");
 
 	return EXIT_SUCCESS;
 }
