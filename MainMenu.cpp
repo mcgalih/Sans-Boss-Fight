@@ -11,7 +11,7 @@ namespace Gl
 
 	void MainMenu::Init()
 	{
-		_background.setTexture(_data->assets.GetTexture("Main Menu"));
+		_background.setTexture(_data->assets.GetTexture(MAIN_MENU_SPRITE));
 
 		_background.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 		_background.setOrigin(sf::Vector2f

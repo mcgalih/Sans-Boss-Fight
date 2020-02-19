@@ -9,10 +9,18 @@ namespace Gl
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 		_data->machine.AddState(StateRef(new MainMenu(_data)));
 
-		_data->assets.LoadTexture("Main Menu", MAIN_MENU_FILE_PATH);
-		_data->assets.LoadTexture("heart", HEART_FILE_PATH);
+		//load Sprite
+		_data->assets.LoadTexture(MAIN_MENU_SPRITE, MAIN_MENU_FILE_PATH);
+		_data->assets.LoadTexture(HEART_SPRITE, HEART_FILE_PATH);
+		_data->assets.LoadTexture(SANS_START_HEAD_SPRITE, SANS_START_HEAD_FILE_PATH);
 
-		_data->assets.LoadTexture("Sans Start Head", SANS_START_HEAD_FILE_PATH);
+		//load Sound
+		_data->assets.LoadBuffer(SANS_SOUND, SANS_SOUND_FILE_PATH);
+		_data->assets.LoadBuffer(BATTLE_START_SOUND, BATTLE_START_SOUND_FILE_PATH);
+
+		//load Font
+		_data->assets.LoadFont(HUD_FONT, FONT_HUD_FILE_PATH);
+		_data->assets.LoadFont(DIALOG_FONT, DIALOG_FONT_FILE_PATH);
 
 		Run();
 	}
