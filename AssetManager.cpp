@@ -31,19 +31,4 @@ namespace Gl
 	{
 		return _fonts.at(name);
 	}
-
-	void AssetManager::LoadBuffer(std::string name, std::string fileName)
-	{
-		sf::SoundBuffer buffer;
-
-		if (buffer.loadFromFile(fileName))
-		{
-			_buffer[name] = buffer;
-		}
-	}
-
-	sf::SoundBuffer& AssetManager::GetBuffer(std::string name)
-	{
-		return _buffer.at(name);
-	}
 }

@@ -1,6 +1,6 @@
 #include "MainMenu.hpp"
-#include <iostream>
 #include "DEFINITIONS.hpp"
+#include "TransitionToGameplay.hpp"
 
 namespace Gl
 {
@@ -11,7 +11,6 @@ namespace Gl
 
 	void MainMenu::Init()
 	{
-		_data->assets.LoadTexture("Main Menu", MAIN_MENU_FILE_PATH);
 		_background.setTexture(_data->assets.GetTexture("Main Menu"));
 
 		_background.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
@@ -35,8 +34,8 @@ namespace Gl
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 		{
-			//switch to the game
-			std::cout << "switch to game" << std::endl;
+			//_data->machine.RemoveState();
+			_data->machine.AddState(StateRef(new TransitionToGameplay(_data)));
 		}
 	}
 	void MainMenu::Draw(float dt)

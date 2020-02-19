@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "MainMenu.hpp"
+#include "DEFINITIONS.hpp"
 
 namespace Gl
 {
@@ -7,6 +8,11 @@ namespace Gl
 	{
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 		_data->machine.AddState(StateRef(new MainMenu(_data)));
+
+		_data->assets.LoadTexture("Main Menu", MAIN_MENU_FILE_PATH);
+		_data->assets.LoadTexture("heart", HEART_FILE_PATH);
+
+		_data->assets.LoadTexture("Sans Start Head", SANS_START_HEAD_FILE_PATH);
 
 		Run();
 	}
