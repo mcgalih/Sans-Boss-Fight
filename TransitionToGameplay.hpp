@@ -29,6 +29,7 @@ namespace Gl
 			_BattleStart.play();
 
 			_SansSound.setBuffer(_data->assets.GetBuffer(SANS_SOUND));
+			SoundStatus = true;
 
 			//////////////////////////////////font////////////////////////////////
 			_DialogueFont.setFont(_data->assets.GetFont(DIALOG_FONT));
@@ -45,13 +46,17 @@ namespace Gl
 			DialogueBox.setOrigin(
 			DialogueBox.getLocalBounds().width/2, DialogueBox.getLocalBounds().height/2 );
 
-			Typing.setPointCount(4);
-			Typing.setPoint(0, sf::Vector2f(0.0f, 0.0f));
-			Typing.setPoint(1, sf::Vector2f(200.0f, 0.0f));
-			Typing.setPoint(2, sf::Vector2f(200.0f, 100.0f));
-			Typing.setPoint(3, sf::Vector2f(0.0f, 100.0f));
-			Typing.setFillColor(sf::Color::Green);
-			Typing.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 150);
+			width = 300.0f;
+			height = 35.0f;
+			TypingMove1 = 0.0f;
+			TypingMove2 = 0.0f;
+			Typing1.setPointCount(4);
+			Typing1.setPosition(330, 100);
+			Typing1.setFillColor(sf::Color::Black);
+
+			Typing2.setPointCount(4);
+			Typing2.setPosition(330, 135);
+			Typing2.setFillColor(sf::Color::Black);
 		}
 
 		void HandleInput()
@@ -76,9 +81,35 @@ namespace Gl
 			}
 			if (_clock.getElapsedTime().asMilliseconds() >= 1800)
 			{
-				SoundTime = _SansSound.getPlayingOffset();
-				_SansSound.play();
-				_SansSound.setPlayingOffset(SoundTime);
+				Typing1.setPoint(0, sf::Vector2f(TypingMove1, 0.0f));
+				Typing1.setPoint(1, sf::Vector2f(width, 0.0f));
+				Typing1.setPoint(2, sf::Vector2f(width, height));
+				Typing1.setPoint(3, sf::Vector2f(TypingMove1, height));
+
+				Typing2.setPoint(0, sf::Vector2f(TypingMove2, 0.0f));
+				Typing2.setPoint(1, sf::Vector2f(width, 0.0f));
+				Typing2.setPoint(2, sf::Vector2f(width, height));
+				Typing2.setPoint(3, sf::Vector2f(TypingMove2, height));
+	
+				TypingMove1 += 6.0f;
+				if (TypingMove1 > width)
+				{
+					TypingMove1 -= 6.0f;
+					TypingMove2 += 6.0f;
+					if (TypingMove2 > width/2 + 20)
+					{
+						SoundStatus = false;
+						TypingMove2 -= 6.0f;
+					}
+				}
+
+				if (SoundStatus == false) _SansSound.stop();
+				else
+				{
+					SoundTime = _SansSound.getPlayingOffset();
+					_SansSound.play();
+					_SansSound.setPlayingOffset(SoundTime);
+				}
 			}
 		}
 
@@ -99,8 +130,9 @@ namespace Gl
 			{
 				_data->window.draw(DialogueBox);
 				_data->window.draw(_SansHead);
-				_data->window.draw(Typing);
 				_data->window.draw(_DialogueFont);
+				_data->window.draw(Typing1);
+				_data->window.draw(Typing2);
 			}
 			_data->window.display();
 		}
@@ -111,10 +143,12 @@ namespace Gl
 		sf::Sprite _heart, _SansHead;
 		sf::Sound _BattleStart, _SansSound;
 		sf::RectangleShape DialogueBox;
-		sf::ConvexShape Typing;
+		sf::ConvexShape Typing1, Typing2;
+		float width, height, TypingMove1, TypingMove2;
 		int x = 0;
 		sf::Time SoundTime;
 		sf::Text _DialogueFont;
+		bool SoundStatus;
 	};
 }
 
