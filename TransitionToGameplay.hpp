@@ -2,6 +2,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include "DEFINITIONS.hpp"
+#include "Gameplay.hpp"
 #include <iostream>
 
 namespace Gl
@@ -33,7 +34,7 @@ namespace Gl
 
 			//////////////////////////////////font////////////////////////////////
 			_DialogueFont.setFont(_data->assets.GetFont(DIALOG_FONT));
-			_DialogueFont.setString("* Let's just get to\n  the point");
+			_DialogueFont.setString("* Let's just get to\n  the point.");
 			_DialogueFont.setLetterSpacing(2.3f);
 			_DialogueFont.setCharacterSize(25);
 			_DialogueFont.setPosition(300, 100);
@@ -79,7 +80,7 @@ namespace Gl
 				x += 7;
 				if (x > 161) x -= 7;
 			}
-			if (_clock.getElapsedTime().asMilliseconds() >= 1800)
+			if (_clock.getElapsedTime().asMilliseconds() >= 2000)
 			{
 				Typing1.setPoint(0, sf::Vector2f(TypingMove1, 0.0f));
 				Typing1.setPoint(1, sf::Vector2f(width, 0.0f));
@@ -96,14 +97,21 @@ namespace Gl
 				{
 					TypingMove1 -= 6.0f;
 					TypingMove2 += 6.0f;
-					if (TypingMove2 > width/2 + 20)
+					if (TypingMove2 > width/2 + 25)
 					{
 						SoundStatus = false;
 						TypingMove2 -= 6.0f;
 					}
 				}
 
-				if (SoundStatus == false) _SansSound.stop();
+				if (SoundStatus == false)
+				{
+					_SansSound.stop();
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+					{
+						std::cout << "ganti ke gameplay\n";
+					}
+				}
 				else
 				{
 					SoundTime = _SansSound.getPlayingOffset();
@@ -130,6 +138,9 @@ namespace Gl
 			{
 				_data->window.draw(DialogueBox);
 				_data->window.draw(_SansHead);
+			}
+			if (_clock.getElapsedTime().asMilliseconds() >= 2000)
+			{
 				_data->window.draw(_DialogueFont);
 				_data->window.draw(Typing1);
 				_data->window.draw(Typing2);

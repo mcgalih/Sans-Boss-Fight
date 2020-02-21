@@ -26,6 +26,7 @@
 //Sound
 #define SANS_SOUND "Sans Sound"
 #define BATTLE_START_SOUND "Battle Start"
+#define GASTER_BLASTER_SOUND "Gaster Blaster"
 
 //font
 #define HUD_FONT "font HUD"

@@ -32,9 +32,9 @@ namespace Gl
 	}
 	void MainMenu::Update(float dt)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+		if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Enter ))
 		{
-			//_data->machine.RemoveState();
+			_data->machine.RemoveState();
 			_data->machine.AddState(StateRef(new TransitionToGameplay(_data)));
 		}
 	}

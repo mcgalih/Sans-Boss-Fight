@@ -17,6 +17,7 @@ namespace Gl
 		//load Sound
 		_data->assets.LoadBuffer(SANS_SOUND, SANS_SOUND_FILE_PATH);
 		_data->assets.LoadBuffer(BATTLE_START_SOUND, BATTLE_START_SOUND_FILE_PATH);
+		_data->assets.LoadBuffer(GASTER_BLASTER_SOUND, GASTER_BLASTER_SOUND_FILE_PATH);
 
 		//load Font
 		_data->assets.LoadFont(HUD_FONT, FONT_HUD_FILE_PATH);

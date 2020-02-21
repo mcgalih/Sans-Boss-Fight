@@ -21,4 +21,13 @@ namespace Gl
 	{
 		return sf::Mouse::getPosition(window);
 	}
+
+	bool InputManager::IsKeyPressed(sf::Keyboard::Key button)
+	{
+		if (sf::Keyboard::isKeyPressed(button))
+		{
+			return true;
+		}
+		return false;
+	}
 }
