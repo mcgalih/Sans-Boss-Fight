@@ -1,6 +1,5 @@
 #include "Gameplay.hpp"
 #include "DEFINITIONS.hpp"
-#include "TransitionToGameplay.hpp"
 
 namespace Gl
 {
@@ -11,6 +10,8 @@ namespace Gl
 
 	void Gameplay::Init()
 	{
+		_bgm.openFromFile(BGM_FILE_PATH);
+		_bgm.play();
 		_heart = new Heart(_data, { 0.0f,0.0f });
 	}
 

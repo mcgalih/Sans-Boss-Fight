@@ -15,6 +15,7 @@ namespace Gl
 		void Draw(float dt);
 
 	private:
+		sf::Music _bgm;
 		GameDataRef _data;
 		Heart* _heart;
 	};

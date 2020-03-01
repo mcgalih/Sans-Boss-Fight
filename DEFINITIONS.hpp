@@ -9,6 +9,7 @@
 #define SANS_START_HEAD_FILE_PATH "Resources/images/sans head.png"
 
 //sound file path
+#define BGM_FILE_PATH "Resources/audio/GIOVANIA.ogg"
 #define BATTLE_START_SOUND_FILE_PATH "Resources/audio/Undertale Sound Effect - Battle Encounter.wav"
 #define SANS_SOUND_FILE_PATH "Resources/audio/Sans.wav"
 #define GASTER_BLASTER_SOUND_FILE_PATH "Resources/audio/Gaster Blaster.wav"
