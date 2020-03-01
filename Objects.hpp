@@ -7,48 +7,15 @@ namespace Gl
 	class Heart
 	{
 	public:
-		Heart(GameDataRef data ,const sf::Vector2f& pos) : pos(pos), _data(data)
-		{
-			_heart.setTexture(_data->assets.GetTexture(HEART_SPRITE));
-			_heart.setOrigin(17 / 2, 15 / 2);
-		}
+		Heart(GameDataRef data, const sf::Vector2f& pos);
 
-		void Movement()
-		{
-			sf::Vector2f dir = { 0.0f,0.0f };
+		void Movement();
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-			{
-				dir.y -= 1.0f;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-			{
-				dir.y += 1.0f;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-			{
-				dir.x -= 1.0f;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-			{
-				dir.x += 1.0f;
-			}
-
-			vel = dir * speed;
-			pos += vel * dt;
-			_heart.setPosition(pos);
-		}
-
-		void setColor(sf::Color& color) { _heart.setColor(color); }
-		void setPosition(sf::Vector2f& setPos) { pos = setPos; }
-		sf::Sprite getSprite() const { return _heart; }
-		sf::Vector2f getPosition() { return pos; };
-		sf::FloatRect getGlobalBounds()
-		{
-			batas = _heart.getGlobalBounds();
-			return batas;
-		}
-		void draw() { _data->window.draw(_heart); }
+		void setColor(sf::Color& color);
+		void setPosition(sf::Vector2f& setPos);
+		sf::Vector2f getPosition();
+		sf::FloatRect getGlobalBounds();
+		void draw();
 
 	private:
 		GameDataRef _data;

@@ -3,7 +3,6 @@
 #include "Game.hpp"
 #include "DEFINITIONS.hpp"
 #include "Gameplay.hpp"
-#include <iostream>
 #include "Objects.hpp"
 
 namespace Gl
@@ -15,8 +14,6 @@ namespace Gl
 
 		void Init()
 		{
-			hatiInput = new Heart(_data, { 0.0f,0.0f });
-
 			////////////////////////////////sprite/////////////////////////////////
 			_heart.setTexture(_data->assets.GetTexture(HEART_SPRITE));
 			_heart.setPosition(50, (SCREEN_HEIGHT / 2) - 10);
@@ -77,7 +74,6 @@ namespace Gl
 
 		void Update(float dt)
 		{
-			hatiInput->Movement();
 			if (_clock.getElapsedTime().asMilliseconds() >= 500)
 			{
 				_heart.setPosition(50 + x, (SCREEN_HEIGHT / 2) - 10);
@@ -113,9 +109,8 @@ namespace Gl
 					_SansSound.stop();
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 					{
-						std::cout << "ganti ke gameplay\n";
-						//_data->machine.RemoveState();
-						//_data->machine.AddState(StateRef(new Gameplay(_data)));
+						_data->machine.RemoveState();
+						_data->machine.AddState(StateRef(new Gameplay(_data)));
 					}
 				}
 				else
@@ -130,7 +125,6 @@ namespace Gl
 		void Draw(float dt)
 		{
 			_data->window.clear();
-			hatiInput->draw();
 
 			if (_clock.getElapsedTime().asMilliseconds() <= 1100)
 			{
@@ -168,8 +162,6 @@ namespace Gl
 		sf::Time SoundTime;
 		sf::Text _DialogueFont;
 		bool SoundStatus;
-
-		Heart* hatiInput;
 	};
 }
 
