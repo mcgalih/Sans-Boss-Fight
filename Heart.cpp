@@ -8,8 +8,19 @@ namespace Gl
 		_heart.setTexture(_data->assets.GetTexture(HEART_SPRITE));
 		_heart.setOrigin(17 / 2, 15 / 2);
 	}
+	bool Heart::Intersects(sf::RectangleShape& shape)
+	{
+		if (shape.getGlobalBounds().intersects(_heart.getGlobalBounds()))
+			return true;
+		else false;
+	}
+	void Heart::setPosition(sf::Vector2f setPos) { pos = setPos; }
+	void Heart::setColor(sf::Color& color) { _heart.setColor(color); }
+	float Heart::getXposition() { return pos.x; };
+	float Heart::getYposition() { return pos.y; };
+	void Heart::draw() { _data->window.draw(_heart); }
 
-	void Heart::Movement()
+	void Heart::Controls()
 	{
 		sf::Vector2f dir = { 0.0f,0.0f };
 
@@ -29,19 +40,16 @@ namespace Gl
 		{
 			dir.x += 1.0f;
 		}
-
 		vel = dir * speed;
 		pos += vel * dt;
 		_heart.setPosition(pos);
 	}
 
-	void Heart::setColor(sf::Color& color) { _heart.setColor(color); }
-	void Heart::setPosition(sf::Vector2f& setPos) { pos = setPos; }
-	sf::Vector2f Heart::getPosition() { return pos; };
-	sf::FloatRect Heart::getGlobalBounds()
+	void Heart::MovePosition(sf::Vector2f dir)
 	{
-		batas = _heart.getGlobalBounds();
-		return batas;
+		vel = dir * speed;
+		pos += vel * dt;
+		_heart.setPosition(pos);
 	}
-	void Heart::draw() { _data->window.draw(_heart); }
+
 }

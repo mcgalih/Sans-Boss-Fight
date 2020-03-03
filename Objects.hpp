@@ -9,12 +9,13 @@ namespace Gl
 	public:
 		Heart(GameDataRef data, const sf::Vector2f& pos);
 
-		void Movement();
-
+		void Controls();
+		bool Intersects(sf::RectangleShape& shape);
 		void setColor(sf::Color& color);
-		void setPosition(sf::Vector2f& setPos);
-		sf::Vector2f getPosition();
-		sf::FloatRect getGlobalBounds();
+		void setPosition(sf::Vector2f setPos);
+		float getXposition();
+		float getYposition();
+		void MovePosition(sf::Vector2f dir);
 		void draw();
 
 	private:
