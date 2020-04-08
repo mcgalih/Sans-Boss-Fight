@@ -14,8 +14,9 @@ namespace Gl
 		void Update(float dt);
 		void Draw(float dt);
 
-		void level_1(float dt);
-		void Draw_level_1();
+		void level_1_Init();
+		void level_1_Update(float dt);
+		void level_1_Draw();
 
 	private:
 		sf::RectangleShape left, up, bottom, right;
@@ -24,6 +25,5 @@ namespace Gl
 		sf::Clock _clock;
 		GameDataRef _data;
 		Heart* _heart;
-		bool _level1;
 	};
 }
