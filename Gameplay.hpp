@@ -20,10 +20,12 @@ namespace Gl
 
 	private:
 		sf::RectangleShape left, up, bottom, right;
-		sf::RectangleShape box;
+		sf::RectangleShape box, hp, hpback, skuy;
+		float health;
 		sf::Music _bgm;
 		sf::Clock _clock;
 		GameDataRef _data;
 		Heart* _heart;
+		Sans* _sans;
 	};
 }

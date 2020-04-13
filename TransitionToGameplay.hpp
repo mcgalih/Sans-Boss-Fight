@@ -23,7 +23,7 @@ namespace Gl
 
 			_SansHead.setOrigin(
 			_SansHead.getLocalBounds().width / 2, _SansHead.getLocalBounds().height / 2);
-			_SansHead.setScale(1.5f,1.5f);
+			_SansHead.setScale(0.8f,0.8f);
 
 			/////////////////////////////////sound////////////////////////////////
 			_BattleStart.setBuffer(_data->assets.GetBuffer(BATTLE_START_SOUND));
@@ -34,9 +34,9 @@ namespace Gl
 
 			//////////////////////////////////font////////////////////////////////
 			_DialogueFont.setFont(_data->assets.GetFont(DIALOG_FONT));
-			_DialogueFont.setString("* Let's just get to\n  the point.");
+			_DialogueFont.setString("* I, Giosans Giovania\n  Will give you a bad dream.");
 			_DialogueFont.setLetterSpacing(2.3f);
-			_DialogueFont.setCharacterSize(25);
+			_DialogueFont.setCharacterSize(21);
 			_DialogueFont.setPosition(300, 100);
 
 			/////////////////////////////////shape////////////////////////////////
@@ -47,16 +47,17 @@ namespace Gl
 			DialogueBox.setOrigin(
 			DialogueBox.getLocalBounds().width/2, DialogueBox.getLocalBounds().height/2 );
 
-			width = 300.0f;
+			width1 = 300.0f;
+			width2 = 390.0f;
 			height = 35.0f;
 			TypingMove1 = 0.0f;
 			TypingMove2 = 0.0f;
 			Typing1.setPointCount(4);
-			Typing1.setPosition(330, 100);
+			Typing1.setPosition(327, 100);
 			Typing1.setFillColor(sf::Color::Black);
 
 			Typing2.setPointCount(4);
-			Typing2.setPosition(330, 135);
+			Typing2.setPosition(327, 130);
 			Typing2.setFillColor(sf::Color::Black);
 		}
 
@@ -83,21 +84,21 @@ namespace Gl
 			if (_clock.getElapsedTime().asMilliseconds() >= 2000)
 			{
 				Typing1.setPoint(0, sf::Vector2f(TypingMove1, 0.0f));
-				Typing1.setPoint(1, sf::Vector2f(width, 0.0f));
-				Typing1.setPoint(2, sf::Vector2f(width, height));
+				Typing1.setPoint(1, sf::Vector2f(width1, 0.0f));
+				Typing1.setPoint(2, sf::Vector2f(width1, height));
 				Typing1.setPoint(3, sf::Vector2f(TypingMove1, height));
 
 				Typing2.setPoint(0, sf::Vector2f(TypingMove2, 0.0f));
-				Typing2.setPoint(1, sf::Vector2f(width, 0.0f));
-				Typing2.setPoint(2, sf::Vector2f(width, height));
+				Typing2.setPoint(1, sf::Vector2f(width2, 0.0f));
+				Typing2.setPoint(2, sf::Vector2f(width2, height));
 				Typing2.setPoint(3, sf::Vector2f(TypingMove2, height));
 	
 				TypingMove1 += 6.0f;
-				if (TypingMove1 > width)
+				if (TypingMove1 > width1)
 				{
 					TypingMove1 -= 6.0f;
 					TypingMove2 += 6.0f;
-					if (TypingMove2 > width/2 + 25)
+					if (TypingMove2 > width2)
 					{
 						SoundStatus = false;
 						TypingMove2 -= 6.0f;
@@ -157,7 +158,7 @@ namespace Gl
 		sf::Sound _BattleStart, _SansSound;
 		sf::RectangleShape DialogueBox;
 		sf::ConvexShape Typing1, Typing2;
-		float width, height, TypingMove1, TypingMove2;
+		float width1, width2, height, TypingMove1, TypingMove2;
 		int x = 0;
 		sf::Time SoundTime;
 		sf::Text _DialogueFont;

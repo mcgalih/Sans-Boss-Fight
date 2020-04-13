@@ -4,7 +4,7 @@
 
 int main()
 {
-	Gl::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "ASLABLOVANIA");
+	Gl::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "GIOVANIA");
 
 	return EXIT_SUCCESS;
 }

@@ -4,9 +4,10 @@
 
 ////////////////////////////////////////File Path/////////////////////////////////
 //sprite file path
-#define MAIN_MENU_FILE_PATH "Resources/images/aslablovania.png"
+#define MAIN_MENU_FILE_PATH "Resources/images/giovania.png"
 #define HEART_FILE_PATH "Resources/images/heart.png"
-#define SANS_START_HEAD_FILE_PATH "Resources/images/sans head.png"
+#define SANS_START_HEAD_FILE_PATH "Resources/images/Giosans.png"
+#define SANS_BODY_FILE_PATH "Resources/images/animate-giovania.png"
 
 //sound file path
 #define BGM_FILE_PATH "Resources/audio/GIOVANIA.ogg"
@@ -23,6 +24,7 @@
 #define MAIN_MENU_SPRITE "Main Menu"
 #define HEART_SPRITE "heart"
 #define SANS_START_HEAD_SPRITE "Sans Start Head"
+#define SANS_BODY "Sans Body"
 
 //Sound
 #define SANS_SOUND "Sans Sound"
