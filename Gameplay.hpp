@@ -19,13 +19,15 @@ namespace Gl
 		void level_1_Draw();
 
 	private:
+		GameDataRef _data;
+		sf::Music _bgm;
+		Heart* _heart;
+		Sans* _sans;
+		dialog* _dialog;
+
 		sf::RectangleShape left, up, bottom, right;
 		sf::RectangleShape box, hp, hpback, skuy;
 		float health;
-		sf::Music _bgm;
-		sf::Clock _clock;
-		GameDataRef _data;
-		Heart* _heart;
-		Sans* _sans;
+		sf::Sprite stand;
 	};
 }

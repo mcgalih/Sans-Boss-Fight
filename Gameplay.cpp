@@ -1,6 +1,7 @@
 #include "Gameplay.hpp"
 #include "DEFINITIONS.hpp"
 #include <iostream>
+#include <string.h>
 
 namespace Gl
 {
@@ -24,6 +25,10 @@ namespace Gl
 		hpback.setFillColor(sf::Color::Red);
 		hpback.setOrigin(120.0f / 2.0f, 0.0f);
 		hpback.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 138);
+
+		stand.setTexture(_data->assets.GetTexture(STAND));
+		stand.setScale(0.045f, 0.045f);
+		stand.setPosition(550.0f, 200.0f);
 
 		level_1_Init();
 	}
@@ -51,7 +56,7 @@ namespace Gl
 		_data->window.clear();
 		_data->window.draw(hpback);
 		_data->window.draw(hp);
-
+		_data->window.draw(stand);
 		level_1_Draw();
 		
 		_data->window.display();

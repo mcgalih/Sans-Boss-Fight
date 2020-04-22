@@ -14,6 +14,8 @@ namespace Gl
 		_data->assets.LoadTexture(HEART_SPRITE, HEART_FILE_PATH);
 		_data->assets.LoadTexture(SANS_START_HEAD_SPRITE, SANS_START_HEAD_FILE_PATH);
 		_data->assets.LoadTexture(SANS_BODY, SANS_BODY_FILE_PATH);
+		_data->assets.LoadTexture(STAND, STAND_FILE_PATH);
+		_data->assets.LoadTexture(DIALOG_BOX, DIALOG_BOX_FILE_PATH);
 
 		//load Sound
 		_data->assets.LoadBuffer(SANS_SOUND, SANS_SOUND_FILE_PATH);

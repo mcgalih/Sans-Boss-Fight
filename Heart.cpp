@@ -14,12 +14,17 @@ namespace Gl
 			return true;
 		else false;
 	}
-	void Heart::setPosition(sf::Vector2f setPos) { pos = setPos; }
+	sf::Vector2f Heart::Center() { return { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 37 }; }
 	void Heart::setColor(sf::Color& color) { _heart.setColor(color); }
 	float Heart::getXposition() { return pos.x; };
 	float Heart::getYposition() { return pos.y; };
 	void Heart::draw() { _data->window.draw(_heart); }
 
+	void Heart::setPosition(sf::Vector2f setPos)
+	{
+		pos = setPos;
+		_heart.setPosition(pos);
+	}
 	void Heart::Controls()
 	{
 		sf::Vector2f dir = { 0.0f,0.0f };

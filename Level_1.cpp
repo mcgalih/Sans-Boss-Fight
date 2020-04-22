@@ -8,7 +8,8 @@ namespace Gl
 	{
 		_heart = new Heart(_data, { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 37 });
 		_sans = new Sans(_data);
-
+		_dialog = new dialog(_data);
+		
 		left.setSize(sf::Vector2f{ 2.0f,180.0f });
 		left.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 37);
 		left.setOrigin(sf::Vector2f{2.0f/2.0f + 125.0f,180.0f/2.0f});
@@ -45,14 +46,16 @@ namespace Gl
 
 	void Gameplay::level_1_Update(float dt)
 	{
+		_dialog->setString("this is requiem         you will never reach     the truth");
 		if (_heart->Intersects(skuy)) health -= 1.0f;
 		if (health < 0.0f) health = 0.0f;
-
+		
 		_sans->animation(dt);
 		if (_heart->Intersects(left)) _heart->MovePosition({ 1.0f,0.0f });
 		else if (_heart->Intersects(right)) _heart->MovePosition({ -1.0f,0.0f });
 		else if (_heart->Intersects(up)) _heart->MovePosition({ 0.0f,1.0f });
 		else if (_heart->Intersects(bottom)) _heart->MovePosition({ 0.0f,-1.0f });
+		else if (_dialog->displaying()== true) _heart->setPosition(_heart->Center());
 		else _heart->Controls();
 	}
 
@@ -63,9 +66,12 @@ namespace Gl
 		else if (_heart->Intersects(up)) _heart->MovePosition({ 0.0f,1.0f });
 		else if (_heart->Intersects(bottom)) _heart->MovePosition({ 0.0f,-1.0f });
 
+		
 		_data->window.draw(skuy);
 		_data->window.draw(box);
 		_heart->draw();
 		_sans->draw();
+		_dialog->draw();
+		
 	}
 }

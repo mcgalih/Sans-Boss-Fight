@@ -8,6 +8,8 @@
 #define HEART_FILE_PATH "Resources/images/heart.png"
 #define SANS_START_HEAD_FILE_PATH "Resources/images/Giosans.png"
 #define SANS_BODY_FILE_PATH "Resources/images/animate-giovania.png"
+#define STAND_FILE_PATH "Resources/images/gold-exp.png"
+#define DIALOG_BOX_FILE_PATH "Resources/images/dialog-box.png"
 
 //sound file path
 #define BGM_FILE_PATH "Resources/audio/GIOVANIA.ogg"
@@ -25,6 +27,8 @@
 #define HEART_SPRITE "heart"
 #define SANS_START_HEAD_SPRITE "Sans Start Head"
 #define SANS_BODY "Sans Body"
+#define STAND "stand"
+#define DIALOG_BOX "dialog box"
 
 //Sound
 #define SANS_SOUND "Sans Sound"

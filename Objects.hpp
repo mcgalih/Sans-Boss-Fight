@@ -1,6 +1,8 @@
 #pragma once
 #include "Game.hpp"
 #include "DEFINITIONS.hpp"
+#include <string.h>
+#include <iostream>
 
 namespace Gl
 {
@@ -13,6 +15,7 @@ namespace Gl
 		bool Intersects(sf::RectangleShape& shape);
 		void setColor(sf::Color& color);
 		void setPosition(sf::Vector2f setPos);
+		sf::Vector2f Center();
 		float getXposition();
 		float getYposition();
 		void MovePosition(sf::Vector2f dir);
@@ -43,5 +46,27 @@ namespace Gl
 		int iFrame = 0;
 		float holdtime = 0.15f;
 		float time = 0.0f;
+	};
+
+	class dialog
+	{
+	public:
+		dialog(GameDataRef data);
+		void setString(std::string text);
+		bool displaying();
+		void draw();
+
+	private:
+		GameDataRef _data;
+		sf::Sprite Dialogbox;
+		float width = 225.0f;
+		float widthmove1, widthmove2, widthmove3;
+		//float delay;
+		std::string str;
+		sf::Text text1, text2, text3;
+		sf::ConvexShape typing1, typing2, typing3;
+		sf::Sound dialogsfx;
+		sf::Time timesfx;
+		bool soundstatus, display;
 	};
 }
