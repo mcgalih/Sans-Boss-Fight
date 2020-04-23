@@ -42,7 +42,9 @@ namespace Gl
 		display = true;
 		//delay = 0.0f;
 
-		widthmove1, widthmove2, widthmove3 = 0.0f;
+		widthmove1 = 0.0f;
+		widthmove2 = 0.0f;
+		widthmove3 = 0.0f;
 	}
 
 	void dialog::setString(std::string text)
@@ -174,17 +176,6 @@ namespace Gl
 			// if (delay == 40.0f)
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) display = false;
 		}
-
-
-
-
-
-
-
-
-
-
-
 	}
 
 

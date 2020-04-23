@@ -24,9 +24,9 @@ namespace Gl
 		Heart* _heart;
 		Sans* _sans;
 		dialog* _dialog;
+		box* _box;
 
-		sf::RectangleShape left, up, bottom, right;
-		sf::RectangleShape box, hp, hpback, skuy;
+		sf::RectangleShape hp, hpback, skuy;
 		float health;
 		sf::Sprite stand;
 	};

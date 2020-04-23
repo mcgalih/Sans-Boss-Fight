@@ -6,36 +6,10 @@ namespace Gl
 {
 	void Gameplay::level_1_Init()
 	{
-		_heart = new Heart(_data, { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 37 });
+		_heart = new Heart(_data);
 		_sans = new Sans(_data);
 		_dialog = new dialog(_data);
-		
-		left.setSize(sf::Vector2f{ 2.0f,180.0f });
-		left.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 37);
-		left.setOrigin(sf::Vector2f{2.0f/2.0f + 125.0f,180.0f/2.0f});
-		left.setFillColor(sf::Color::Green);
-
-		right.setSize(sf::Vector2f{ 2.0f,180.0f });
-		right.setPosition(SCREEN_WIDTH / 2 + 127, SCREEN_HEIGHT / 2 + 37);
-		right.setOrigin(sf::Vector2f{0.0f,180.0f / 2.0f });
-		right.setFillColor(sf::Color::Green);
-
-		up.setSize(sf::Vector2f{ 250.0f,2.0f });
-		up.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 53);
-		up.setOrigin(sf::Vector2f{ 250.0f/2.0f,0.0f });
-		up.setFillColor(sf::Color::Green);
-
-		bottom.setSize(sf::Vector2f{ 250.0f,2.0f });
-		bottom.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 127);
-		bottom.setOrigin(sf::Vector2f{ 250.0f / 2.0f,0.0f });
-		bottom.setFillColor(sf::Color::Green);
-
-		box.setSize(sf::Vector2f{ 250.0f,180.0f });
-		box.setOrigin(sf::Vector2f{ 250.0f / 2.0f, 180.0f / 2.0f });
-		box.setFillColor(sf::Color::Transparent);
-		box.setOutlineColor(sf::Color::White);
-		box.setOutlineThickness(2.0f);
-		box.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 37);
+		_box = new box(_data, _heart);
 
 		skuy.setSize(sf::Vector2f{ 120.0f, 25.0f });
 		skuy.setFillColor(sf::Color::Green);
@@ -46,29 +20,26 @@ namespace Gl
 
 	void Gameplay::level_1_Update(float dt)
 	{
-		_dialog->setString("this is requiem         you will never reach     the truth");
+		_dialog->setString("what did you just say   about my hair??");
 		if (_heart->Intersects(skuy)) health -= 1.0f;
 		if (health < 0.0f) health = 0.0f;
 		
 		_sans->animation(dt);
-		if (_heart->Intersects(left)) _heart->MovePosition({ 1.0f,0.0f });
-		else if (_heart->Intersects(right)) _heart->MovePosition({ -1.0f,0.0f });
-		else if (_heart->Intersects(up)) _heart->MovePosition({ 0.0f,1.0f });
-		else if (_heart->Intersects(bottom)) _heart->MovePosition({ 0.0f,-1.0f });
-		else if (_dialog->displaying()== true) _heart->setPosition(_heart->Center());
-		else _heart->Controls();
+		
+		sf::Vector2f pos = { 400.0f, 424.0f };
+		
+		if (_dialog->displaying() == true) _heart->setPosition({ 400.0f, 337.0f });
+		else if (_dialog->displaying() == false)
+		{
+			_box->SquareBox(pos);
+		}
 	}
 
 	void Gameplay::level_1_Draw()
 	{
-		if (_heart->Intersects(left)) _heart->MovePosition({ 1.0f,0.0f });
-		else if (_heart->Intersects(right)) _heart->MovePosition({ -1.0f,0.0f });
-		else if (_heart->Intersects(up)) _heart->MovePosition({ 0.0f,1.0f });
-		else if (_heart->Intersects(bottom)) _heart->MovePosition({ 0.0f,-1.0f });
-
-		
 		_data->window.draw(skuy);
-		_data->window.draw(box);
+
+		_box->drawSquareBox();
 		_heart->draw();
 		_sans->draw();
 		_dialog->draw();

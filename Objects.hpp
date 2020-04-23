@@ -9,13 +9,13 @@ namespace Gl
 	class Heart
 	{
 	public:
-		Heart(GameDataRef data, const sf::Vector2f& pos);
+		Heart(GameDataRef data);
 
-		void Controls();
+		void Controls(sf::Vector2f firstpos);
 		bool Intersects(sf::RectangleShape& shape);
 		void setColor(sf::Color& color);
 		void setPosition(sf::Vector2f setPos);
-		sf::Vector2f Center();
+		sf::Vector2f getPosition();
 		float getXposition();
 		float getYposition();
 		void MovePosition(sf::Vector2f dir);
@@ -28,6 +28,7 @@ namespace Gl
 		sf::Vector2f vel = { 0.0f,0.0f };
 		const float speed = 300.0f;
 		const float dt = 1.0f / 60.0f;
+		bool boolfirstpos;
 	};
 
 	class Sans
@@ -69,4 +70,23 @@ namespace Gl
 		sf::Time timesfx;
 		bool soundstatus, display;
 	};
+
+	class box
+	{
+	public:
+		box(GameDataRef data, Heart *heart);
+
+		void SquareBox(sf::Vector2f pos);
+		void drawSquareBox();
+
+		void drawRectangleBox();
+		void drawAttackBox();
+
+	private:
+		Heart* _heart;
+		GameDataRef _data;
+		sf::RectangleShape left, up, bottom, right;
+		sf::RectangleShape _SquareBox, _RectangleBox, _AttackBox;
+	};
+
 }
