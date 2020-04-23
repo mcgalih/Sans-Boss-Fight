@@ -20,7 +20,7 @@ namespace Gl
 
 	void Gameplay::level_1_Update(float dt)
 	{
-		_dialog->setString("what did you just say   about my hair??");
+		_dialog->setString("012345678901234567890123binomskuy dulu duuuude  hirruuup");
 		if (_heart->Intersects(skuy)) health -= 1.0f;
 		if (health < 0.0f) health = 0.0f;
 		

@@ -1,4 +1,5 @@
 #include "Objects.hpp"
+#include <math.h>
 
 namespace Gl
 {
@@ -49,7 +50,6 @@ namespace Gl
 
 	void dialog::setString(std::string text)
 	{
-		str = text;
 		std::string line1, line2, line3;
 
 		typing1.setPoint(0, sf::Vector2f(widthmove1, 0.0f));
@@ -72,10 +72,13 @@ namespace Gl
 			line1.append(text.begin(), text.end());
 			text1.setString(line1);
 
+			float duration = line1.length() * 10;
+			if (duration > width) duration = width;
+
 			widthmove1 += 5.0f;
-			if (widthmove1 > width)
+			if (widthmove1 > duration)
 			{
-				widthmove1 -= 5.0f;
+				widthmove1 = width;
 				soundstatus = false;
 			}
 		}
@@ -88,12 +91,15 @@ namespace Gl
 			text1.setString(line1);
 			text2.setString(line2);
 
+			float duration = line2.length() * 10;
+			if (duration > width) duration = width;
+
 			widthmove1 += 5.0f;
 			if (widthmove1 > width)
 			{
 				widthmove1 -= 5.0f;
 				widthmove2 += 5.0f;
-				if (widthmove2 > width)
+				if (widthmove2 > duration)
 				{
 					widthmove2 -= 5.0f;
 					soundstatus = false;
@@ -112,6 +118,9 @@ namespace Gl
 			text2.setString(line2);
 			text3.setString(line3);
 
+			float duration = line3.length() * 10;
+			if (duration > width) duration = width;
+
 			widthmove1 += 5.0f;
 			if (widthmove1 > width)
 			{
@@ -121,7 +130,7 @@ namespace Gl
 				{
 					widthmove2 -= 5.0f;
 					widthmove3 += 5.0f;
-					if (widthmove3 > width)
+					if (widthmove3 > duration)
 					{
 						widthmove3 -= 5.0f;
 						soundstatus = false;
@@ -137,9 +146,9 @@ namespace Gl
 		}
 		else
 		{
-			timesfx = dialogsfx.getPlayingOffset();
+			tickSfx = dialogsfx.getPlayingOffset();
 			dialogsfx.play();
-			dialogsfx.setPlayingOffset(timesfx);
+			dialogsfx.setPlayingOffset(tickSfx);
 		}
 
 	}
@@ -173,7 +182,7 @@ namespace Gl
 				_data->window.draw(typing2);
 				_data->window.draw(typing3);
 			}
-			// if (delay == 40.0f)
+			// if (delay == 40.0f) display = false;
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) display = false;
 		}
 	}

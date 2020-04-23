@@ -3,6 +3,7 @@
 #include "DEFINITIONS.hpp"
 #include <string.h>
 #include <iostream>
+#include <vector>
 
 namespace Gl
 {
@@ -54,6 +55,7 @@ namespace Gl
 	public:
 		dialog(GameDataRef data);
 		void setString(std::string text);
+		void times(int time);
 		bool displaying();
 		void draw();
 
@@ -63,12 +65,12 @@ namespace Gl
 		float width = 225.0f;
 		float widthmove1, widthmove2, widthmove3;
 		//float delay;
-		std::string str;
 		sf::Text text1, text2, text3;
 		sf::ConvexShape typing1, typing2, typing3;
 		sf::Sound dialogsfx;
-		sf::Time timesfx;
+		sf::Time tickSfx;
 		bool soundstatus, display;
+		std::vector<std::string> speak;
 	};
 
 	class box
