@@ -1,5 +1,4 @@
 #include "Objects.hpp"
-#include <math.h>
 
 namespace Gl
 {
@@ -41,123 +40,141 @@ namespace Gl
 		dialogsfx.setBuffer(_data->assets.GetBuffer(SANS_SOUND));
 		soundstatus = true;
 		display = true;
-		//delay = 0.0f;
+		delay = 0.0f;
 
+		change = 0;
 		widthmove1 = 0.0f;
 		widthmove2 = 0.0f;
 		widthmove3 = 0.0f;
 	}
 
-	void dialog::setString(std::string text)
+	bool dialog::displaying() { return display; }
+
+	void dialog::times(int time)
 	{
-		std::string line1, line2, line3;
+		std::vector<std::string> input(time);
+		speak = input;
+	}
 
-		typing1.setPoint(0, sf::Vector2f(widthmove1, 0.0f));
-		typing1.setPoint(1, sf::Vector2f(width, 0.0f));
-		typing1.setPoint(2, sf::Vector2f(width, 20.0f));
-		typing1.setPoint(3, sf::Vector2f(widthmove1, 20.0f));
-
-		typing2.setPoint(0, sf::Vector2f(widthmove2, 0.0f));
-		typing2.setPoint(1, sf::Vector2f(width, 0.0f));
-		typing2.setPoint(2, sf::Vector2f(width, 20.0f));
-		typing2.setPoint(3, sf::Vector2f(widthmove2, 20.0f));
-
-		typing3.setPoint(0, sf::Vector2f(widthmove3, 0.0f));
-		typing3.setPoint(1, sf::Vector2f(width, 0.0f));
-		typing3.setPoint(2, sf::Vector2f(width, 20.0f));
-		typing3.setPoint(3, sf::Vector2f(widthmove3, 20.0f));
-
-		if (text.length() <= 24)
+	void dialog::setString(int iteration, std::string text)
+	{
+		int x = iteration - 1;
+		speak[x] = text;
+	}
+	void dialog::process()
+	{
+		std::string line1, line2, line3, text;
+		if (display == true)
 		{
-			line1.append(text.begin(), text.end());
-			text1.setString(line1);
-
-			float duration = line1.length() * 10;
-			if (duration > width) duration = width;
-
-			widthmove1 += 5.0f;
-			if (widthmove1 > duration)
+			if (change == speak.size())
 			{
-				widthmove1 = width;
+				change = speak.size() - 1;
+				display = false;
 				soundstatus = false;
 			}
-		}
+			text = speak[change];
 
-		if ((text.length() > 24) && (text.length() <= 48))
-		{
-			line1.append(text.begin(), text.begin()+24);
-			if(text.at(24) == ' ') line2.append(text.begin()+25, text.end());
-			else line2.append(text.begin() + 24, text.end());
-			text1.setString(line1);
-			text2.setString(line2);
+			typing1.setPoint(0, sf::Vector2f(widthmove1, 0.0f));
+			typing1.setPoint(1, sf::Vector2f(width, 0.0f));
+			typing1.setPoint(2, sf::Vector2f(width, 20.0f));
+			typing1.setPoint(3, sf::Vector2f(widthmove1, 20.0f));
 
-			float duration = line2.length() * 10;
-			if (duration > width) duration = width;
+			typing2.setPoint(0, sf::Vector2f(widthmove2, 0.0f));
+			typing2.setPoint(1, sf::Vector2f(width, 0.0f));
+			typing2.setPoint(2, sf::Vector2f(width, 20.0f));
+			typing2.setPoint(3, sf::Vector2f(widthmove2, 20.0f));
 
-			widthmove1 += 5.0f;
-			if (widthmove1 > width)
+			typing3.setPoint(0, sf::Vector2f(widthmove3, 0.0f));
+			typing3.setPoint(1, sf::Vector2f(width, 0.0f));
+			typing3.setPoint(2, sf::Vector2f(width, 20.0f));
+			typing3.setPoint(3, sf::Vector2f(widthmove3, 20.0f));
+
+			if (text.length() <= 24)
 			{
-				widthmove1 -= 5.0f;
-				widthmove2 += 5.0f;
-				if (widthmove2 > duration)
+				line1.append(text.begin(), text.end());
+				text1.setString(line1);
+
+				float duration = line1.length() * 10; // penyesuaian karakter dengan typing
+				if (duration > width) duration = width;
+
+				widthmove1 += 5.0f;
+				if (widthmove1 > duration)
 				{
-					widthmove2 -= 5.0f;
+					widthmove1 = width;
 					soundstatus = false;
 				}
 			}
-		}
 
-		if ((text.length() > 48) && (text.length() <= 72))
-		{
-			line1.append(text.begin(), text.begin() + 24);
-			if (text.at(24) == ' ') line2.append(text.begin() + 25, text.end());
-			else line2.append(text.begin() + 24, text.begin() + 48);
-			if (text.at(48) == ' ') line3.append(text.begin() + 49, text.end());
-			else line3.append(text.begin() + 48, text.end());
-			text1.setString(line1);
-			text2.setString(line2);
-			text3.setString(line3);
-
-			float duration = line3.length() * 10;
-			if (duration > width) duration = width;
-
-			widthmove1 += 5.0f;
-			if (widthmove1 > width)
+			if ((text.length() > 24) && (text.length() <= 48))
 			{
-				widthmove1 -= 5.0f;
-				widthmove2 += 5.0f;
-				if (widthmove2 > width)
+				line1.append(text.begin(), text.begin() + 24);
+				if (text.at(24) == ' ') line2.append(text.begin() + 25, text.end());
+				else line2.append(text.begin() + 24, text.end());
+				text1.setString(line1);
+				text2.setString(line2);
+
+				float duration = line2.length() * 10;
+				if (duration > width) duration = width;
+
+				widthmove1 += 5.0f;
+				if (widthmove1 > width)
 				{
-					widthmove2 -= 5.0f;
-					widthmove3 += 5.0f;
-					if (widthmove3 > duration)
+					widthmove1 -= 5.0f;
+					widthmove2 += 5.0f;
+					if (widthmove2 > duration)
 					{
-						widthmove3 -= 5.0f;
+						widthmove2 -= 5.0f;
 						soundstatus = false;
 					}
 				}
 			}
-		}
 
-		if (soundstatus == false)
-		{
-			dialogsfx.stop();
-			//delay += 1.0f;
-		}
-		else
-		{
-			tickSfx = dialogsfx.getPlayingOffset();
-			dialogsfx.play();
-			dialogsfx.setPlayingOffset(tickSfx);
+			if ((text.length() > 48) && (text.length() <= 72))
+			{
+				line1.append(text.begin(), text.begin() + 24);
+				if (text.at(24) == ' ') line2.append(text.begin() + 25, text.end());
+				else line2.append(text.begin() + 24, text.begin() + 48);
+				if (text.at(48) == ' ') line3.append(text.begin() + 49, text.end());
+				else line3.append(text.begin() + 48, text.end());
+				text1.setString(line1);
+				text2.setString(line2);
+				text3.setString(line3);
+
+				float duration = line3.length() * 10;
+				if (duration > width) duration = width;
+
+				widthmove1 += 5.0f;
+				if (widthmove1 > width)
+				{
+					widthmove1 -= 5.0f;
+					widthmove2 += 5.0f;
+					if (widthmove2 > width)
+					{
+						widthmove2 -= 5.0f;
+						widthmove3 += 5.0f;
+						if (widthmove3 > duration)
+						{
+							widthmove3 -= 5.0f;
+							soundstatus = false;
+						}
+					}
+				}
+			}
+
+			if (soundstatus == true)
+			{
+				tickSfx = dialogsfx.getPlayingOffset();
+				dialogsfx.play();
+				dialogsfx.setPlayingOffset(tickSfx);
+			}
+			else
+			{
+				dialogsfx.stop();
+				delay += 1.0f;
+			}
 		}
 
 	}
-
-	bool dialog::displaying()
-	{
-		return display;
-	}
-
 	void dialog::draw()
 	{
 		if (soundstatus == true)
@@ -170,10 +187,10 @@ namespace Gl
 			_data->window.draw(typing2);
 			_data->window.draw(typing3);
 		}
-		else // soundstatus == false
+		else
 		{
-			if (display == true) // if (delay <= 40.0f)
-			{
+			if (display == true)
+			{	// ketika suara mati, masih digambar sebelum mencapai batas delay
 				_data->window.draw(Dialogbox);
 				_data->window.draw(text1);
 				_data->window.draw(text2);
@@ -182,12 +199,18 @@ namespace Gl
 				_data->window.draw(typing2);
 				_data->window.draw(typing3);
 			}
-			// if (delay == 40.0f) display = false;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) display = false;
+			if (delay == 55.0f)
+			{
+				// reset
+				delay = 0.0f;
+				widthmove1 = 0.0f;
+				widthmove2 = 0.0f;
+				widthmove3 = 0.0f;
+				change += 1; // pindah elemen berikutnya pada vector speak[]
+				soundstatus = true;
+			}
 		}
 	}
-
-
 
 
 

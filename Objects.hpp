@@ -1,9 +1,10 @@
 #pragma once
 #include "Game.hpp"
 #include "DEFINITIONS.hpp"
-#include <string.h>
+#include <string>
 #include <iostream>
 #include <vector>
+#include <iterator>
 
 namespace Gl
 {
@@ -54,23 +55,25 @@ namespace Gl
 	{
 	public:
 		dialog(GameDataRef data);
-		void setString(std::string text);
 		void times(int time);
-		bool displaying();
+		void setString(int iteration, std::string text);
+		void process();
 		void draw();
+		bool displaying();
 
 	private:
 		GameDataRef _data;
 		sf::Sprite Dialogbox;
 		float width = 225.0f;
 		float widthmove1, widthmove2, widthmove3;
-		//float delay;
+		float delay;
 		sf::Text text1, text2, text3;
 		sf::ConvexShape typing1, typing2, typing3;
 		sf::Sound dialogsfx;
 		sf::Time tickSfx;
 		bool soundstatus, display;
 		std::vector<std::string> speak;
+		int change;
 	};
 
 	class box

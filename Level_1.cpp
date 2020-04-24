@@ -20,7 +20,12 @@ namespace Gl
 
 	void Gameplay::level_1_Update(float dt)
 	{
-		_dialog->setString("012345678901234567890123binomskuy dulu duuuude  hirruuup");
+		_dialog->times(2);
+		_dialog->setString(1, "012345678901234567890123G123456789G123456789G123hahaha");
+		_dialog->setString(2, "test 2 ditambah beberapa kalimat");
+		//_dialog->setString(3, "i giosans giovania have a dream");
+		//_dialog->setString(4, "to become a gangstar");
+		_dialog->process();
 		if (_heart->Intersects(skuy)) health -= 1.0f;
 		if (health < 0.0f) health = 0.0f;
 		
