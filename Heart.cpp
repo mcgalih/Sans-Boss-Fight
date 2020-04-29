@@ -13,7 +13,7 @@ namespace Gl
 	{
 		if (shape.getGlobalBounds().intersects(_heart.getGlobalBounds()))
 			return true;
-		else false;
+		else return false;
 	}
 	sf::Vector2f Heart::getPosition() { return pos; }
 	void Heart::setColor(sf::Color& color) { _heart.setColor(color); }

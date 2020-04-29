@@ -4,7 +4,7 @@ namespace Gl
 {
 	dialog::dialog(GameDataRef data) :_data(data)
 	{
-		//total karakter per baris = 24
+		//maksimum karakter per baris = 24
 		//panjang kotak typing per karakter = 10.0f
 		Dialogbox.setTexture(_data->assets.GetTexture(DIALOG_BOX));
 		Dialogbox.setPosition(450.0f, 40.0f);
@@ -41,6 +41,7 @@ namespace Gl
 		soundstatus = true;
 		display = true;
 		delay = 0.0f;
+		dialog_i.push_back(false);
 
 		change = 0;
 		widthmove1 = 0.0f;
@@ -49,11 +50,17 @@ namespace Gl
 	}
 
 	bool dialog::displaying() { return display; }
+	bool dialog::i_dialog(int i)
+	{
+		int x = i - 1;
+		return dialog_i[x];
+	}
 
 	void dialog::times(int time)
 	{
 		std::vector<std::string> input(time);
 		speak = input;
+		dialog_i.resize(time, false);
 	}
 
 	void dialog::setString(int iteration, std::string text)
@@ -73,6 +80,7 @@ namespace Gl
 				soundstatus = false;
 			}
 			text = speak[change];
+			dialog_i[change] = true;
 
 			typing1.setPoint(0, sf::Vector2f(widthmove1, 0.0f));
 			typing1.setPoint(1, sf::Vector2f(width, 0.0f));

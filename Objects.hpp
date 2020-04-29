@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <iterator>
 
 namespace Gl
 {
@@ -60,6 +59,7 @@ namespace Gl
 		void process();
 		void draw();
 		bool displaying();
+		bool i_dialog(int i);
 
 	private:
 		GameDataRef _data;
@@ -73,6 +73,7 @@ namespace Gl
 		sf::Time tickSfx;
 		bool soundstatus, display;
 		std::vector<std::string> speak;
+		std::vector<bool> dialog_i;
 		int change;
 	};
 
