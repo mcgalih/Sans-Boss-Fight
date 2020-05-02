@@ -1,7 +1,5 @@
 #include "Gameplay.hpp"
 #include "DEFINITIONS.hpp"
-#include <iostream>
-#include <string.h>
 
 namespace Gl
 {
@@ -14,23 +12,31 @@ namespace Gl
 	{
 		_bgm.openFromFile(BGM_FILE_PATH);
 		_bgm.play();
-		_bgm.setVolume(80);
+		_bgm.setVolume(60);
 
-		health = 120.0f;
-		hp.setFillColor(sf::Color::Yellow);
-		hp.setOrigin(120.0f / 2.0f, 0.0f);
-		hp.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 138);
+		_dialog = new dialog(_data);
+		_heart = new Heart(_data);
+		_box = new box(_data, _heart);
+		_health = new Health(_data);
 
-		hpback.setSize(sf::Vector2f{ 120.0f, 25.0f });
-		hpback.setFillColor(sf::Color::Red);
-		hpback.setOrigin(120.0f / 2.0f, 0.0f);
-		hpback.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 138);
+		fixglitch.setFillColor(sf::Color::Black);
+		fixglitch.setPosition(465.0f, 20.0f);
+		fixglitch.setSize(sf::Vector2f{ 300,220 });
 
 		stand.setTexture(_data->assets.GetTexture(STAND));
-		stand.setScale(0.045f, 0.045f);
-		stand.setPosition(550.0f, 200.0f);
+		stand.setPosition(80.0f, 200.0f);
 
-		level_1_Init();
+		int width = stand.getLocalBounds().width;
+		int height = stand.getLocalBounds().height;
+		for (int i = 0; i < nFrames; i++)
+		{
+			frames[i] = { 0 + i * width / nFrames , 0, width / nFrames , height };
+		}
+
+		firststate = true;
+		change.push_back(false);
+		change.push_back(false);
+		level_1_Init(); level_2_Init();
 	}
 
 	void Gameplay::HandleInput()
@@ -41,23 +47,24 @@ namespace Gl
 			if (sf::Event::Closed == event.type)
 			{
 				_data->window.close();
+				_bgm.stop();
 			}
 		}
 	}
 
 	void Gameplay::Update(float dt)
 	{
-		hp.setSize(sf::Vector2f{ health, 25.0f });
-		level_1_Update(dt);
+		if (firststate == true) level_1_Update(dt);
+		else if (change[2] == true) level_2_Update(dt);
 	}
 
 	void Gameplay::Draw(float dt)
 	{
 		_data->window.clear();
-		_data->window.draw(hpback);
-		_data->window.draw(hp);
-		_data->window.draw(stand);
-		level_1_Draw();
+		_health->draw();
+
+		if(firststate == true) level_1_Draw();
+		else if(change[2] == true) level_2_Draw();
 		
 		_data->window.display();
 	}

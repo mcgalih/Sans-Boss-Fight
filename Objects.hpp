@@ -7,6 +7,24 @@
 
 namespace Gl
 {
+	class Health
+	{
+	public:
+		Health(GameDataRef data);
+		void setHP(float d_hp);
+		float total();
+		void item();
+		void draw();
+
+	private:
+		GameDataRef _data;
+		sf::Text hp_number;
+		std::string count;
+		sf::RectangleShape hp, hpback;
+		float healthpoint;
+		int number;
+	};
+
 	class Heart
 	{
 	public:
@@ -60,6 +78,7 @@ namespace Gl
 		void draw();
 		bool displaying();
 		bool i_dialog(int i);
+		void reset();
 
 	private:
 		GameDataRef _data;
@@ -86,7 +105,6 @@ namespace Gl
 		void drawSquareBox();
 
 		void drawRectangleBox();
-		void drawAttackBox();
 
 	private:
 		Heart* _heart;

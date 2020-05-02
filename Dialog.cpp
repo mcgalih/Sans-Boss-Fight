@@ -220,7 +220,19 @@ namespace Gl
 		}
 	}
 
-
+	void dialog::reset()
+	{
+		display = true;
+		soundstatus = true;
+		speak.clear();
+		dialog_i.clear();
+		dialog_i.push_back(false);
+		delay = 0.0f;
+		widthmove1 = 0.0f;
+		widthmove2 = 0.0f;
+		widthmove3 = 0.0f;
+		change = 0;
+	}
 
 
 
