@@ -21,20 +21,17 @@ namespace Gl
 		GameDataRef _data;
 		sf::Music _bgm;
 
-		std::vector<Heart> _heartvec;
 		Heart* _heart;
 		dialog* _dialog;
 		box* _box;
 		Health* _health;
-
-		Sans *_sans, *sans2;
+		Sans *_sans;
 
 		bool firststate, stopdelay, firstStandAnim;
 		std::vector<bool> change;
 		float delay;
-		sf::RectangleShape hp, hpback, skuy, fixglitch;
+		sf::RectangleShape hp, hpback, skuy;
 		sf::Sprite pohon;
-		//float health;
 
 		sf::Sprite stand;
 		int nFrames = 10;

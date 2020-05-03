@@ -54,7 +54,11 @@ namespace Gl
 	{
 	public:
 		Sans(GameDataRef data);
-		void animation(float dt);
+
+		void normal(float dt);
+		void angry(float dt);
+		void rage(float dt);
+		
 		void setPosition(sf::Vector2f setPos);
 		void draw();
 	private:
@@ -62,7 +66,9 @@ namespace Gl
 		sf::Vector2f pos;
 		sf::Sprite _sans;
 		int nFrames = 3;
-		sf::IntRect frames[3];
+		sf::IntRect normal_frames[3];
+		sf::IntRect angry_frames[3];
+		sf::IntRect rage_frames[3];
 		int iFrame = 0;
 		float holdtime = 0.15f;
 		float time = 0.0f;

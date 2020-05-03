@@ -214,6 +214,7 @@ namespace Gl
 				widthmove1 = 0.0f;
 				widthmove2 = 0.0f;
 				widthmove3 = 0.0f;
+				dialog_i[change] = false;
 				change += 1; // pindah elemen berikutnya pada vector speak[]
 				soundstatus = true;
 			}

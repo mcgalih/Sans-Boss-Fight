@@ -18,10 +18,12 @@ namespace Gl
 		_heart = new Heart(_data);
 		_box = new box(_data, _heart);
 		_health = new Health(_data);
+		_sans = new Sans(_data);
 
-		fixglitch.setFillColor(sf::Color::Black);
-		fixglitch.setPosition(465.0f, 20.0f);
-		fixglitch.setSize(sf::Vector2f{ 300,220 });
+		skuy.setSize(sf::Vector2f{ 120.0f, 25.0f });
+		skuy.setFillColor(sf::Color::Green);
+		skuy.setOrigin(120.0f / 2.0f, 0.0f);
+		skuy.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 50);
 
 		stand.setTexture(_data->assets.GetTexture(STAND));
 		stand.setPosition(80.0f, 200.0f);
