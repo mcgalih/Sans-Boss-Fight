@@ -15,7 +15,7 @@ namespace Gl
 		void Draw(float dt);
 
 		void level_1_Init(); void level_1_Update(float dt); void level_1_Draw();
-		void level_2_Init(); void level_2_Update(float dt); void level_2_Draw();
+		void level_2_Update(float dt); void level_2_Draw();
 
 	private:
 		GameDataRef _data;
@@ -27,8 +27,8 @@ namespace Gl
 		Health* _health;
 		Sans *_sans;
 
-		bool firststate, stopdelay, firstStandAnim;
-		std::vector<bool> change;
+		bool stopdelay, firstStandAnim;
+		int level;
 		float delay;
 		sf::RectangleShape hp, hpback, skuy;
 		sf::Sprite pohon;

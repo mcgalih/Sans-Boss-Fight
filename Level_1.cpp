@@ -60,8 +60,7 @@ namespace Gl
 		else if (_dialog->displaying() == false) {
 			_box->SquareBox(pos);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-				firststate = false;
-				change.push_back(true);
+				level += 1;
 				_dialog->reset();
 			}
 		}

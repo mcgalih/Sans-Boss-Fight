@@ -35,10 +35,8 @@ namespace Gl
 			frames[i] = { 0 + i * width / nFrames , 0, width / nFrames , height };
 		}
 
-		firststate = true;
-		change.push_back(false);
-		change.push_back(false);
-		level_1_Init(); level_2_Init();
+		level_1_Init();
+		level = 1;
 	}
 
 	void Gameplay::HandleInput()
@@ -56,8 +54,16 @@ namespace Gl
 
 	void Gameplay::Update(float dt)
 	{
-		if (firststate == true) level_1_Update(dt);
-		else if (change[2] == true) level_2_Update(dt);
+
+		switch (level)
+		{
+		case 1: level_1_Update(dt);
+			break;
+		case 2: level_2_Update(dt);
+			break;
+		default:
+			break;
+		}
 	}
 
 	void Gameplay::Draw(float dt)
@@ -65,8 +71,15 @@ namespace Gl
 		_data->window.clear();
 		_health->draw();
 
-		if(firststate == true) level_1_Draw();
-		else if(change[2] == true) level_2_Draw();
+		switch (level)
+		{
+		case 1: level_1_Draw();
+			break;
+		case 2: level_2_Draw();
+			break;
+		default:
+			break;
+		}
 		
 		_data->window.display();
 	}

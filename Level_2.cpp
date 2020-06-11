@@ -3,11 +3,6 @@
 
 namespace Gl
 {
-	void Gameplay::level_2_Init()
-	{
-
-	}
-
 	void Gameplay::level_2_Update(float dt)
 	{
 		_dialog->times(2);
