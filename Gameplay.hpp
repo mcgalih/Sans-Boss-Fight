@@ -2,6 +2,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include "Objects.hpp"
+#include "Shaking.hpp"
 
 namespace Gl
 {
@@ -25,7 +26,8 @@ namespace Gl
 		dialog* _dialog;
 		box* _box;
 		Health* _health;
-		Sans *_sans;
+		Sans* _sans;
+		Shake* _shake;
 
 		bool stopdelay, firstStandAnim;
 		int level;

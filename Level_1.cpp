@@ -30,8 +30,10 @@ namespace Gl
 		// dialog and expressions
 		if (_dialog->i_dialog(2) || _dialog->i_dialog(3)) _sans->angry(dt);
 		else if (_dialog->i_dialog(5)) {
-			if (_dialog->displaying() == true) _sans->rage(dt);
-			else _sans->normal(dt);
+			if (_dialog->displaying() == true) {
+				_sans->rage(dt);
+				_shake->SetDirectionRight();
+			} else _sans->normal(dt);
 		} else _sans->normal(dt);
 
 		if (_dialog->i_dialog(4)) firstStandAnim = true;

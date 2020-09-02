@@ -19,6 +19,7 @@ namespace Gl
 		_box = new box(_data, _heart);
 		_health = new Health(_data);
 		_sans = new Sans(_data);
+		_shake = new Shake(_data);
 
 		skuy.setSize(sf::Vector2f{ 120.0f, 25.0f });
 		skuy.setFillColor(sf::Color::Green);
